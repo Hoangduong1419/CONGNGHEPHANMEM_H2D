@@ -9,16 +9,29 @@ class Scene2 extends Phaser.Scene{
     }
 
     create(){
+
         // background;
         this.background = this.add.image(0, 0, "Background1").setOrigin(0, 0);
+
         // ball;
         var arr = new Array("redBall0");
         for(var i = 0; i < ballNumber; i++){
             arr[i] = this.add.image(_const += 35, 10, "redBall0").setOrigin(0, 0);
         }
+
+        //animation;
+        // var animationBall = this.add.sprite(200, 200, "animation").setOrigin(0, 0);
+        //         // animationBall.anims.create({
+        //         //     key: "animation_ball",
+        //         //     frames: this.anims.generateFrameNumbers("animation"),
+        //         //     framesRate: 20,
+        //         //     repeat: -1
+        //         // });
+
         //text;
         this.text1 = this.add.text(350, 150, "Click Above " + "\n" + "The Strange Creature", {font: "25px Arial", fill: "black"});
         this.clickCountText = this.add.text(0, 150, "Result", {font: "25px Arial", fill: "black"});
+
         //button text;
         const clickButton = this.add.text(200, 80, "Above", {font: "25px Arial", fill: "black" })
             .setInteractive()
@@ -28,24 +41,29 @@ class Scene2 extends Phaser.Scene{
             .setInteractive()
             .on('pointerdown', () => this.moveBall1(arr[ballNumber - 1]));
 
-
     }
 
 
     moveBall(ball){
         if(status == 0){
             this.clickCountText.setText("Correct!");
-            this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
-            status = 1;
+            var temp = Phaser.Math.Between(0, 1);
+            if(temp == 1){
+                this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
+            }
+            else{
+                this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
+            }
+            status = temp;
             ball.x += 2000;
             ballNumber--;
             if(ballNumber == 0){
-                this.text2 = this.add.text(250, 10, "Huan Ngu Lon", {font: "25px Arial", fill: "red" })
+                this.text2 = this.add.text(280, 10, "WIN!", {font: "25px Arial", fill: "red" })
             }
         }
         else{
             this.clickCountText.setText("Wrong!");
-            this.text1.setText("Below Below co ma!");
+            this.text1.setText("Below Below Below!");
         }
 
 
@@ -54,16 +72,22 @@ class Scene2 extends Phaser.Scene{
         if(status == 1){
             ball.x += 2000;
             this.clickCountText.setText("Correct!");
-            this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
-            status = 0;
+            var temp = Phaser.Math.Between(0, 1);
+            if(temp == 1){
+                this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
+            }
+            else{
+                this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
+            }
+            status = temp;
             ballNumber--;
             if(ballNumber == 0){
-                this.text2 = this.add.text(250, 10, "Huan Ngu Lon", {font: "25px Arial", fill: "red" })
+                this.text2 = this.add.text(280, 10, "WIN!", {font: "25px Arial", fill: "red" })
             }
         }
         else{
             this.clickCountText.setText("Wrong!");
-            this.text1.setText("Above Above co ma!");
+            this.text1.setText("Above Above Above!");
         }
     }
 
