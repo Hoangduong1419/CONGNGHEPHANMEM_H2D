@@ -1,5 +1,5 @@
-let _const = 110;
-let ballNumber = 6;
+let _const = 360;
+let ballNumber = 9;
 let status = 0;
 
 class Scene2 extends Phaser.Scene{
@@ -10,14 +10,15 @@ class Scene2 extends Phaser.Scene{
 
     create(){
 
-        // background;
+        // Object of the game;
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
-        this.bird = this.add.image(100, 140, "imageBird").setOrigin(0, 0);
+        this.framework = this.add.image(233, 115, "frameWork").setOrigin(0, 0);
+
 
         // ball;
-        var arr = new Array("redBall0");
+        var arr = new Array("redBall");
         for(var i = 0; i < ballNumber; i++){
-            arr[i] = this.add.image(_const += 35, 14, "redBall0").setOrigin(0, 0);
+            arr[i] = this.add.image(_const += 70, 137, "redBall").setOrigin(0, 0);
         }
 
         //animation;
@@ -30,19 +31,20 @@ class Scene2 extends Phaser.Scene{
         // });
 
         //text;
-        this.text1 = this.add.text(350, 180, "Click Above " + "\n" + "The Strange Creature", {font: "25px Arial", fill: "black"});
-        this.clickCountText = this.add.text(100, 150, "Result", {font: "25px Arial", fill: "black"});
-        this.spriteAbove = this.add.sprite(0, 60, 'button').setInteractive().on('pointerdown', () => this.moveBall(arr[ballNumber - 1])).setOrigin(0,0);
-        this.spriteBelow = this.add.sprite(0, 280, 'button').setInteractive().on('pointerdown', () => this.moveBall1(arr[ballNumber - 1])).setOrigin(0,0);
+        this.text1 = this.add.text(800, 350, "Click Above " + "\n" + "The Strange Creature", {font: "50px Arial", fill: "black"});
+        this.clickCountText = this.add.text(100 + 440, 150 + 180, "Result", {font: "25px Arial", fill: "black"});
 
-        //button text;
+        //Events in the game;
+        this.spriteAbove = this.add.sprite(233, 225, 'buttonAbove').setInteractive().on('pointerdown', () => this.moveBall(arr[ballNumber - 1])).setOrigin(0,0);
+        this.spriteBelow = this.add.sprite(233, 525, 'buttonBelow').setInteractive().on('pointerdown', () => this.moveBall1(arr[ballNumber - 1])).setOrigin(0,0);
         this.input.on('gameobjectover', function (pointer, gameObject) {
             gameObject.setTint(0x8EEDE2);
         });
-
         this.input.on('gameobjectout', function (pointer, gameObject) {
             gameObject.clearTint();
         });
+
+        this.bird = this.add.image(420, 340, "imageBird").setOrigin(0, 0);
     }
 
 
@@ -62,14 +64,14 @@ class Scene2 extends Phaser.Scene{
             ballNumber--;
 
             if(ballNumber == 0){
-                this.text2 = this.add.text(280, 10, "WIN!", {font: "25px Arial", fill: "red" })
+                this.text2 = this.add.text(280 + 440, 10 + 180, "WIN!", {font: "25px Arial", fill: "red" })
                 this.spriteAbove.destroy();
                 this.spriteAbove = null;
                 this.spriteBelow.destroy();
                 this.spriteBelow = null;
                 this.text1.destroy();
                 this.text1 = null;
-                this.nextButton = this.add.image(450, 120, 'nextButton').setInteractive().setOrigin(0, 0);
+                this.nextButton = this.add.image(450 + 440, 120 + 180, 'nextButton').setInteractive().setOrigin(0, 0);
                 this.input.on('gameobjectover', function (pointer, gameObject) {
                     gameObject.setTint(0xff0000);
                 });
@@ -101,14 +103,14 @@ class Scene2 extends Phaser.Scene{
             ballNumber--;
 
             if(ballNumber == 0){
-                this.text2 = this.add.text(280, 10, "WIN!", {font: "25px Arial", fill: "red" })
+                this.text2 = this.add.text(280 +440, 10 + 180, "WIN!", {font: "25px Arial", fill: "red" })
                 this.spriteAbove.destroy();
                 this.spriteAbove = null;
                 this.spriteBelow.destroy();
                 this.spriteBelow = null;
                 this.text1.destroy();
                 this.text1 = null;
-                this.nextButton = this.add.image(450, 120, 'nextButton').setInteractive().setOrigin(0, 0);
+                this.nextButton = this.add.image(450 + 440, 120 + 180, 'nextButton').setInteractive().setOrigin(0, 0);
                 this.input.on('gameobjectover', function (pointer, gameObject) {
                     gameObject.setTint(0xff0000);
                 });
