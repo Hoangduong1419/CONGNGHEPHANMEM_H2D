@@ -7,9 +7,11 @@ class Scene1 extends Phaser.Scene{
 
     preload() {
         // load data;
-        this.load.image('Background1', 'assets/images/Background1.png')
+        this.load.image('backGround', 'assets/images/backGround.png')
         this.load.image('redBall0', 'assets/images/redBall.png')
         this.load.image('button', 'assets/images/button.png')
+        this.load.image('nextButton', 'assets/images/nextButton.png')
+        this.load.image('imageBird', 'assets/images/imageBird.png')
 
         this.load.spritesheet('animation', 'assets/spritesheets/animationOfBall.png', {
             frameWidth: 29,
